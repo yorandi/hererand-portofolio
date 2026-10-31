@@ -151,7 +151,7 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="wordmark" href="#home" aria-label="Yorandi home">
+        <a className="wordmark" href="#home" aria-label="Hererand home">
           <span>R.</span>
           <small>SOFTWARE ENGINEER</small>
         </a>
@@ -219,7 +219,7 @@ export default function Home() {
           <div className="hero-photo">
             <Image
               src="/images/profile.jpeg"
-              alt="Yorandi - Software Engineer"
+              alt="Randi Fauzi - Software Engineer"
               fill
               priority
               sizes="(max-width: 768px) 80vw, 400px"
@@ -228,7 +228,7 @@ export default function Home() {
           </div>
 
           <div className="hero-photo-caption">
-            <span>YORANDI / 001</span>
+            <span>AHMAD RANDI FAUZI / 001</span>
             <span>SOFTWARE ENGINEER</span>
           </div>
         </div>
