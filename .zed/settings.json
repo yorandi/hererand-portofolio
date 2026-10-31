@@ -1,0 +1,11 @@
+{
+  "terminal": {
+    "shell": {
+      "with_arguments": {
+        "program": "C:\\Program Files\\Git\\bin\\bash.exe",
+        "args": ["--login", "-i"],
+        "title_override": "Git Bash",
+      },
+    },
+  },
+}
