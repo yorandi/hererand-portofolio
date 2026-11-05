@@ -13,11 +13,27 @@ export const webDeveloper: Expertise = {
   skills: [
     {
       category: "Frontend",
-      items: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS"],
+      items: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+      ],
     },
     {
       category: "Backend",
-      items: ["PHP", "Laravel", "CodeIgniter", "Node.js", "NestJS", "Python", "FastAPI"],
+      items: [
+        "PHP",
+        "Laravel",
+        "CodeIgniter",
+        "Node.js",
+        "NestJS",
+        "Python",
+        "FastAPI",
+      ],
     },
     {
       category: "Database",
@@ -30,6 +46,7 @@ export const webDeveloper: Expertise = {
   ],
   projects: [
     {
+      slug: "job-application-tracker",
       name: "Job Application Tracker",
       description:
         "A full-stack job-search workspace for organizing applications, tracking application statuses, and keeping notes about each opportunity. A deployed version is available for project demonstrations.",
@@ -43,8 +60,16 @@ export const webDeveloper: Expertise = {
       status: "Deployed",
       kind: "web",
       demo: "https://job-application-tracks.vercel.app",
+      caseStudy: {
+        // why: "...",
+        solution:
+          "A full-stack Next.js application backed by PostgreSQL through Prisma. Each application is stored with its current status, its own notes, and a history of changes, behind authenticated access and input validation.",
+        // usage: ["Step one", "Step two"],
+        // gallery: [{ src: "/images/projects/job-application-tracker/board.png", alt: "...", caption: "..." }],
+      },
     },
     {
+      slug: "palm-vein-payment-prototype",
       name: "Palm-Vein Digital Payment Prototype",
       description:
         "A research prototype exploring palm-vein recognition as an identity signal in a digital payment workflow. Experiments use a Raspberry Pi camera setup and a Python API; this is not a production-ready payment security system.",
@@ -65,8 +90,13 @@ export const webDeveloper: Expertise = {
       ],
       status: "Research prototype",
       kind: "research",
+      caseStudy: {
+        solution:
+          "An experimental setup that explores palm-vein recognition as an identity signal in a payment flow. Images are captured with a Raspberry Pi 3 Model B and NoIR camera, recognition is explored with CNN and Siamese Network models, and a Python FastAPI service with PostgreSQL ties the workflow together. Evaluation is limited to the research setup and is not a production security validation.",
+      },
     },
     {
+      slug: "plantops",
       name: "PlantOps — Industrial Maintenance Management System",
       description:
         "A planned portfolio project for industrial machine management and maintenance work orders. In development; the listed capabilities are intended scope, not completed features.",
@@ -83,13 +113,23 @@ export const webDeveloper: Expertise = {
     {
       title: "Responsive Web Design",
       issuer: "freeCodeCamp",
+
       verified: false,
+      skills: [
+        "HTML",
+        "CSS",
+        "Responsive Design",
+        "Flexbox",
+        "CSS Grid",
+        "Accessibility",
+      ],
       note: "Completed learning. Credential proof, completion date, and certificate image have not been supplied; not a verified credential.",
     },
     {
       title: "GitHub Foundations — DataCamp course",
       issuer: "DataCamp",
       verified: false,
+      skills: ["Git", "GitHub"],
       note: "Completed learning through DataCamp, not an official GitHub Foundations certification. Credential proof and completion date have not been supplied.",
     },
   ],
