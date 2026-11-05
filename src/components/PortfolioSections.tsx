@@ -4,14 +4,18 @@ import {
   ArrowDownRight,
   ArrowRight,
   ArrowUpRight,
-  Award,
+  BarChart3,
   Braces,
   Database,
-  Fingerprint,
   Github,
+  LayoutTemplate,
+  Lightbulb,
+  LineChart,
   Linkedin,
   Mail,
-  Workflow,
+  Server,
+  Wrench,
+  type LucideIcon,
 } from "lucide-react";
 import {
   experience,
@@ -22,7 +26,19 @@ import {
   type Project,
   type SkillCategory,
 } from "@/data/portfolio";
+import { CertificateArt, ProjectArt } from "./Decor";
 import { ImageLightbox } from "./ImageLightbox";
+
+const categoryIcons: Record<string, LucideIcon> = {
+  Frontend: LayoutTemplate,
+  Backend: Server,
+  Database: Database,
+  Tools: Wrench,
+  Programming: Braces,
+  "Data Analysis": BarChart3,
+  Visualization: LineChart,
+  Concepts: Lightbulb,
+};
 
 function SectionHeading({
   number,
@@ -51,12 +67,13 @@ export function SkillGroup({
   group: SkillCategory;
   index: number;
 }) {
+  const Icon = categoryIcons[group.category] ?? Braces;
   return (
     <article className="skill-group">
       <div className="skill-heading">
         <span>0{index + 1}</span>
         <h3>{group.category}</h3>
-        <Braces size={18} aria-hidden="true" />
+        <Icon size={18} aria-hidden="true" />
       </div>
       <div className="skill-tags">
         {group.items.map((item) => (
@@ -76,14 +93,6 @@ export function ProjectVisual({
   caption: string;
   sizes: string;
 }) {
-  const Icon =
-    project.kind === "research"
-      ? Fingerprint
-      : project.kind === "data"
-        ? Database
-        : project.kind === "planned"
-          ? Workflow
-          : Braces;
   if (project.image)
     return (
       <Image
@@ -96,13 +105,7 @@ export function ProjectVisual({
     );
   return (
     <>
-      <div className="project-visual-grid" aria-hidden="true" />
-      <Icon
-        className="project-visual-icon"
-        size={44}
-        strokeWidth={1}
-        aria-hidden="true"
-      />
+      <ProjectArt kind={project.kind} />
       <span className="visual-caption">{caption}</span>
     </>
   );
@@ -199,8 +202,10 @@ export function CertificateCard({ certificate }: { certificate: Certificate }) {
           />
         ) : (
           <>
-            <Award aria-hidden="true" strokeWidth={1} />
-            <span>Certificate image to be added</span>
+            <CertificateArt />
+            <span className="certificate-caption">
+              Certificate image to be added
+            </span>
           </>
         )}
       </div>

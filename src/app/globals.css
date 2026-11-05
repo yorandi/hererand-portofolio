@@ -1835,6 +1835,175 @@ body,
     }
 }
 
+/* ---------- Decorative layer ---------- */
+body::before {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    background:
+        radial-gradient(
+            ellipse 60% 45% at 85% -5%,
+            color-mix(in srgb, var(--accent) 13%, transparent),
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 45% 40% at 0% 100%,
+            color-mix(in srgb, var(--accent) 7%, transparent),
+            transparent 70%
+        );
+    content: "";
+    pointer-events: none;
+}
+
+.section-heading .section-index {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-heading .section-index::before {
+    width: 28px;
+    height: 2px;
+    background: var(--accent);
+    content: "";
+}
+
+.expertise-hero {
+    background:
+        radial-gradient(
+            ellipse 55% 70% at 90% 0%,
+            color-mix(in srgb, var(--accent) 14%, transparent),
+            transparent 70%
+        ),
+        radial-gradient(
+                circle,
+                color-mix(in srgb, var(--muted) 24%, transparent) 1px,
+                transparent 1.5px
+            )
+            0 0 / 22px 22px,
+        var(--surface);
+}
+
+.contact-section {
+    background:
+        radial-gradient(
+            ellipse 50% 90% at 100% 100%,
+            color-mix(in srgb, var(--accent) 10%, transparent),
+            transparent 70%
+        ),
+        transparent;
+}
+
+/* Selector cards: faint motif that brightens on hover */
+.expertise-card-link {
+    position: relative;
+}
+
+.expertise-card-link > :not(.card-art) {
+    position: relative;
+    z-index: 1;
+}
+
+.card-art {
+    position: absolute;
+    top: 84px;
+    right: 28px;
+    width: 150px;
+    height: 150px;
+    color: var(--text);
+    opacity: 0.1;
+    pointer-events: none;
+    transition:
+        opacity 300ms ease,
+        transform 400ms ease;
+}
+
+.expertise-card:hover .card-art {
+    opacity: 0.28;
+    transform: translate(-4px, 4px) rotate(-3deg);
+}
+
+/* Project and certificate placeholder illustrations */
+.project-art,
+.certificate-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--muted);
+}
+
+.certificate-image > svg.certificate-art {
+    width: 100%;
+    height: 100%;
+}
+
+.project-card:hover .project-art {
+    color: var(--text);
+}
+
+.project-art {
+    transition: color 300ms ease;
+}
+
+.visual-caption,
+.certificate-caption {
+    z-index: 2;
+}
+
+.certificate-caption {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    left: 12px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Skill cards */
+.skill-group {
+    transition:
+        border-color 200ms ease,
+        transform 200ms ease;
+}
+
+.skill-group:hover {
+    border-color: var(--muted);
+    transform: translateY(-2px);
+}
+
+.skill-heading > span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+
+.skill-heading svg {
+    box-sizing: content-box;
+    width: 18px;
+    height: 18px;
+    margin-left: auto;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface-raised);
+}
+
+.skill-group:hover .skill-heading svg {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+@media (max-width: 640px) {
+    .card-art {
+        top: 76px;
+        right: 20px;
+        width: 104px;
+        height: 104px;
+    }
+}
+
 /* ---------- Project cards: link to case study ---------- */
 .project-title-link:hover {
     text-decoration: underline;

@@ -31,6 +31,7 @@ import { webDeveloper } from "@/data/web-developer";
 import { dataEngineer } from "@/data/data-engineer";
 import { ThemeToggle } from "./ThemeToggle";
 import { PortfolioSections } from "./PortfolioSections";
+import { CardArt } from "./Decor";
 
 const expertises = [webDeveloper, dataEngineer];
 const sectionLinks = [
@@ -214,6 +215,7 @@ function ExpertiseCard({
         className="expertise-card-link"
         aria-label={`Explore ${expertise.label} portfolio`}
       >
+        <CardArt id={expertise.id} />
         <div className="card-top">
           <span className="card-icon">
             <Icon size={25} strokeWidth={1.5} aria-hidden="true" />

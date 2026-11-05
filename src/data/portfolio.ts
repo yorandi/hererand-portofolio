@@ -82,7 +82,7 @@ export const profile: {
   location: "Indonesia, Banten",
   email: "randifauzi12@gmail.com",
   github: "https://github.com/yorandi",
-  linkedin: "https://www.linkedin.com/in/randifuazi",
+  linkedin: "https://www.linkedin.com/in/randifauzi",
   availability: "Open to software Engineering/ Web Developer opportunities",
   photo: "/images/profile.jpeg",
 };
