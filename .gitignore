@@ -7,3 +7,7 @@ build
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+test-results
+playwright-report
+agent.md
+.zed/
