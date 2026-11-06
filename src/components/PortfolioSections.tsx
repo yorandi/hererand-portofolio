@@ -102,7 +102,7 @@ export function ProjectVisual({
         alt={`${project.name} screenshot`}
         fill
         sizes={sizes}
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "contain" }}
       />
     );
   return (
