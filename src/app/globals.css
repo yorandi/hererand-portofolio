@@ -1835,6 +1835,284 @@ body,
     }
 }
 
+/* ---------- Activity ---------- */
+.activity-layout {
+    display: grid;
+    gap: 24px;
+}
+
+.activity-panel,
+.platform-card {
+    min-width: 0;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+.activity-panel-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-bottom: 24px;
+}
+
+.activity-panel-head h3,
+.platform-card h3 {
+    margin-top: 8px;
+    font-size: 24px;
+    letter-spacing: -0.04em;
+}
+
+.activity-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.activity-link:hover {
+    text-decoration: underline;
+}
+
+.activity-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 48px;
+    margin: 0 0 24px;
+}
+
+.activity-stats dt,
+.platform-stats dt {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.activity-stats dd {
+    margin: 4px 0 0;
+    font-size: 36px;
+    letter-spacing: -0.05em;
+    line-height: 1.1;
+}
+
+/* rtl on the scroller makes it open scrolled to the newest weeks; the SVG stays ltr. */
+.heatmap-scroll {
+    overflow-x: auto;
+    padding-bottom: 6px;
+    direction: rtl;
+}
+
+.heatmap {
+    display: block;
+    direction: ltr;
+    width: 100%;
+    min-width: 620px;
+    height: auto;
+}
+
+.heatmap text {
+    fill: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+}
+
+.heat-0 {
+    fill: var(--surface-raised);
+    background: var(--surface-raised);
+}
+
+.heat-1 {
+    fill: color-mix(in srgb, var(--accent) 30%, var(--surface-raised));
+    background: color-mix(in srgb, var(--accent) 30%, var(--surface-raised));
+}
+
+.heat-2 {
+    fill: color-mix(in srgb, var(--accent) 55%, var(--surface-raised));
+    background: color-mix(in srgb, var(--accent) 55%, var(--surface-raised));
+}
+
+.heat-3 {
+    fill: color-mix(in srgb, var(--accent) 80%, var(--surface-raised));
+    background: color-mix(in srgb, var(--accent) 80%, var(--surface-raised));
+}
+
+.heat-4 {
+    fill: var(--accent);
+    background: var(--accent);
+}
+
+html[data-theme="light"] .heat-0 {
+    fill: #dfdfd2;
+    background: #dfdfd2;
+}
+
+html[data-theme="light"] .heat-4 {
+    fill: #8fb02f;
+    background: #8fb02f;
+}
+
+.heatmap-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 10px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+}
+
+.heatmap-legend span:first-child {
+    margin-right: 4px;
+}
+
+.heatmap-legend span:last-child {
+    margin-left: 4px;
+}
+
+.heatmap-legend i {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.recent-label {
+    margin-block: 28px 8px;
+}
+
+.repo-list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+}
+
+.repo-list li {
+    border-bottom: 1px solid var(--line);
+}
+
+.repo-list a {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 12px;
+    padding-block: 8px;
+}
+
+.repo-list a:hover .repo-name {
+    text-decoration: underline;
+}
+
+.repo-list svg {
+    flex-shrink: 0;
+    color: var(--muted);
+}
+
+.repo-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+}
+
+.repo-meta {
+    margin-left: auto;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.activity-source {
+    margin-top: 20px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 24px;
+}
+
+.platform-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.platform-handle {
+    margin-top: 4px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+
+.platform-description {
+    margin-block: 16px 20px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.85;
+}
+
+.platform-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px;
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+}
+
+.platform-stats dd {
+    margin: 4px 0 0;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+}
+
+.platform-footer {
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.activity-footnote {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.activity-footnote svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+@media (max-width: 640px) {
+    .activity-panel,
+    .platform-card {
+        padding: 20px;
+    }
+
+    .repo-list a {
+        flex-wrap: wrap;
+    }
+
+    .repo-meta {
+        margin-left: 27px;
+        white-space: normal;
+    }
+}
+
 /* ---------- Decorative layer ---------- */
 body::before {
     position: fixed;

@@ -26,6 +26,8 @@ import {
   type Project,
   type SkillCategory,
 } from "@/data/portfolio";
+import type { ActivityData } from "@/lib/activity";
+import { ActivityContent } from "./ActivityContent";
 import { CertificateArt, ProjectArt } from "./Decor";
 import { ImageLightbox } from "./ImageLightbox";
 
@@ -252,7 +254,13 @@ export function CertificateCard({ certificate }: { certificate: Certificate }) {
   );
 }
 
-export function PortfolioSections({ expertise }: { expertise: Expertise }) {
+export function PortfolioSections({
+  expertise,
+  activity,
+}: {
+  expertise: Expertise;
+  activity: ActivityData;
+}) {
   const isWeb = expertise.id === "web-developer";
   return (
     <>
@@ -372,11 +380,26 @@ export function PortfolioSections({ expertise }: { expertise: Expertise }) {
       </section>
       <section
         className="content-section page-shell"
+        id="activity"
+        aria-labelledby="activity-title"
+      >
+        <SectionHeading
+          number="04"
+          title={isWeb ? "Practice, in the open." : "Learning in public."}
+          description="A look at what I’m actively doing: public code on GitHub and progress on the platforms I learn from. Live figures are fetched when the site is built."
+        />
+        <h3 className="sr-only" id="activity-title">
+          Coding and learning activity
+        </h3>
+        <ActivityContent expertiseId={expertise.id} activity={activity} />
+      </section>
+      <section
+        className="content-section page-shell"
         id="certifications"
         aria-labelledby="certifications-title"
       >
         <SectionHeading
-          number="04"
+          number="05"
           title="Always a work in progress."
           description="Learning is ongoing. Each card lists the skills gained; verified credentials are labelled separately from completed courses."
         />
@@ -411,7 +434,7 @@ export function PortfolioSections({ expertise }: { expertise: Expertise }) {
         aria-labelledby="contact-title"
       >
         <div className="page-shell">
-          <p className="section-index">05 / START A CONVERSATION</p>
+          <p className="section-index">06 / START A CONVERSATION</p>
           <div className="contact-grid">
             <div>
               <h2 className="contact-title" id="contact-title">

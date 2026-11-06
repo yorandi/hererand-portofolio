@@ -279,6 +279,47 @@ test("certificates show the skills gained in the web developer section", async (
   await expect(card.getByText("Completed · evidence pending")).toBeVisible();
 });
 
+test("activity section shows GitHub and the platforms for each expertise", async ({
+  page,
+}) => {
+  await page.goto("/web-developer/");
+  const web = page.locator("#activity");
+  await expect(
+    web.getByRole("heading", { level: 2, name: "Practice, in the open." }),
+  ).toBeVisible();
+  await expect(
+    web.getByRole("link", { name: "View profile" }).first(),
+  ).toHaveAttribute("href", "https://github.com/yorandi");
+  await expect(web.getByRole("heading", { name: "Boot.dev" })).toBeVisible();
+  await expect(
+    web.getByRole("heading", { name: "freeCodeCamp" }),
+  ).toBeVisible();
+  await expect(web.getByRole("heading", { name: "DataCamp" })).toHaveCount(0);
+
+  await page.goto("/data-engineer/");
+  const data = page.locator("#activity");
+  await expect(
+    data.getByRole("heading", { level: 2, name: "Learning in public." }),
+  ).toBeVisible();
+  await expect(data.getByRole("heading", { name: "DataCamp" })).toBeVisible();
+  await expect(data.getByRole("heading", { name: "Boot.dev" })).toHaveCount(0);
+});
+
+test("activity navigation link scrolls to the section", async ({
+  page,
+}, testInfo) => {
+  await page.goto("/web-developer/");
+  if (testInfo.project.name === "mobile") {
+    await page.getByRole("button", { name: "Open navigation" }).click();
+  }
+  await page
+    .getByRole("navigation", { name: "Portfolio sections" })
+    .getByRole("link", { name: "Activity", exact: true })
+    .click();
+  await expect(page).toHaveURL(/#activity$/);
+  await expect(page.locator("#activity")).toBeInViewport();
+});
+
 test("small screens do not overflow in either theme", async ({ page }) => {
   test.setTimeout(60_000);
   for (const width of [320, 390, 768, 1024]) {

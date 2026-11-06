@@ -32,6 +32,7 @@ import { dataEngineer } from "@/data/data-engineer";
 import { ThemeToggle } from "./ThemeToggle";
 import { PortfolioSections } from "./PortfolioSections";
 import { CardArt } from "./Decor";
+import type { ActivityData } from "@/lib/activity";
 
 const expertises = [webDeveloper, dataEngineer];
 const sectionLinks = [
@@ -39,6 +40,7 @@ const sectionLinks = [
   ["skills", "Skills"],
   ["projects", "Projects"],
   ["experience", "Experience"],
+  ["activity", "Activity"],
   ["certifications", "Certifications"],
   ["contact", "Contact"],
 ];
@@ -460,39 +462,46 @@ function ExpertiseHero({ expertise }: { expertise: Expertise }) {
   );
 }
 
-const ExpertiseScreen = forwardRef<HTMLDivElement, { expertise: Expertise }>(
-  function ExpertiseScreen({ expertise }, ref) {
-    const isPresent = useIsPresent();
-    const reduced = useReducedMotion();
-    return (
+const ExpertiseScreen = forwardRef<
+  HTMLDivElement,
+  { expertise: Expertise; activity: ActivityData }
+>(function ExpertiseScreen({ expertise, activity }, ref) {
+  const isPresent = useIsPresent();
+  const reduced = useReducedMotion();
+  return (
+    <motion.div
+      ref={ref}
+      aria-hidden={!isPresent || undefined}
+      inert={!isPresent || undefined}
+      className="expertise-stage"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: reduced ? 0 : 0.2 }}
+    >
+      <div className="page-shell">
+        <ExpertiseHero expertise={expertise} />
+      </div>
       <motion.div
-        ref={ref}
-        aria-hidden={!isPresent || undefined}
-        inert={!isPresent || undefined}
-        className="expertise-stage"
-        initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: reduced ? 0 : 0.2 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          delay: reduced ? 0 : 0.35,
+          duration: reduced ? 0 : 0.4,
+        }}
       >
-        <div className="page-shell">
-          <ExpertiseHero expertise={expertise} />
-        </div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            delay: reduced ? 0 : 0.35,
-            duration: reduced ? 0 : 0.4,
-          }}
-        >
-          <PortfolioSections expertise={expertise} />
-        </motion.div>
+        <PortfolioSections expertise={expertise} activity={activity} />
       </motion.div>
-    );
-  },
-);
+    </motion.div>
+  );
+});
 
-export function PortfolioApp({ children }: { children: React.ReactNode }) {
+export function PortfolioApp({
+  children,
+  activity,
+}: {
+  children: React.ReactNode;
+  activity: ActivityData;
+}) {
   const pathname = usePathname();
   const route = pathname.replace(/\/$/, "");
   const expertise = expertises.find((item) => route === `/${item.id}`);
@@ -552,7 +561,11 @@ export function PortfolioApp({ children }: { children: React.ReactNode }) {
           {knownRoute ? (
             <AnimatePresence initial={false} mode="popLayout">
               {expertise ? (
-                <ExpertiseScreen key={expertise.id} expertise={expertise} />
+                <ExpertiseScreen
+                  key={expertise.id}
+                  expertise={expertise}
+                  activity={activity}
+                />
               ) : (
                 <HomeScreen key="home" />
               )}
